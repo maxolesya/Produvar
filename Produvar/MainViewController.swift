@@ -13,9 +13,19 @@ class MainViewController: UIViewController {
     @IBAction func authClick(_ sender: Any) {
          self.performSegue(withIdentifier: "authSegue", sender: self)
     }
+    @IBOutlet var photoButton: UIButton!
+    @IBAction func photoClick(_ sender: Any) {
+        print("here photo")
+        self.performSegue(withIdentifier: "scanSegue", sender: self)
+    }
+    @objc func photoTap(){
+        print("here photo")
+        self.performSegue(withIdentifier: "scanSegue", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let addButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(photoTap))
+        self.navigationItem.leftBarButtonItem=addButton
         let imageView = UIImageView(frame: CGRect(x: 20, y: 0, width: 10, height: 40))
         imageView.contentMode = .scaleAspectFit
         // 4

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class User  {//он публичный или нет
+class User:Decodable  {//он публичный или нет
     public var role:String
     public var name: String
     public var bearer: String
@@ -21,4 +21,19 @@ class User  {//он публичный или нет
     }
 
 }
+class Manufacturer  {//он публичный или нет
+    public var website:String
+    public var name: String
+    public var phonenumber: String
+    public var email:String
+    init(website:String,name: String,phonenumber: String,email:String) {
+        self.name = name
+        self.website=website
+        self.phonenumber=phonenumber
+        self.email = email
+        
+    }
+    
+}
+
 

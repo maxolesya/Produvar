@@ -10,6 +10,11 @@
 		7607EC1B20CEB6B1008D351B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607EC1A20CEB6B1008D351B /* MessageCell.swift */; };
 		7607EC1D20CEB700008D351B /* MessageItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607EC1C20CEB700008D351B /* MessageItemCell.swift */; };
 		7607EC1F20CFB9D0008D351B /* 768px-Kvadrato.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7607EC1E20CFB9D0008D351B /* 768px-Kvadrato.svg.png */; };
+		7629E87020D6FA31008D2ED5 /* icons8-спящий-режим-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7629E86D20D6FA31008D2ED5 /* icons8-спящий-режим-50.png */; };
+		7629E87120D6FA31008D2ED5 /* icons8-проверено-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7629E86E20D6FA31008D2ED5 /* icons8-проверено-50.png */; };
+		7629E87220D6FA31008D2ED5 /* icons8-рабочий-процесс-filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7629E86F20D6FA31008D2ED5 /* icons8-рабочий-процесс-filled-50.png */; };
+		7629E87620D97770008D2ED5 /* Bugs in Resources */ = {isa = PBXBuildFile; fileRef = 7629E87520D97770008D2ED5 /* Bugs */; };
+		7629E87820D97FBA008D2ED5 /* UpdateStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7629E87720D97FBA008D2ED5 /* UpdateStatusCell.swift */; };
 		7645198820AADCAA004F2C7A /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645198720AADCAA004F2C7A /* AuthController.swift */; };
 		7645198A20AAE46A004F2C7A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645198920AAE46A004F2C7A /* MainViewController.swift */; };
 		7645198C20AAE67A004F2C7A /* AllowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645198B20AAE67A004F2C7A /* AllowViewController.swift */; };
@@ -45,6 +50,9 @@
 		767C1CD420C3EB040022C0A5 /* icons8-qr-код-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 767C1CCD20C3EB040022C0A5 /* icons8-qr-код-26.png */; };
 		76844B8220BD829B0057F2F4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76844B8120BD829B0057F2F4 /* User.swift */; };
 		76844B8420BD8E370057F2F4 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76844B8320BD8E370057F2F4 /* Parameters.swift */; };
+		768C372E20D04AE800173A1A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 768C372D20D04AE800173A1A /* Podfile */; };
+		768C373020D2C74000173A1A /* QRAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C372F20D2C74000173A1A /* QRAuthViewController.swift */; };
+		8F5A53C9287CD510FF00F008 /* Pods_Produvar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C51D2C9AFC84501570A8FD /* Pods_Produvar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +73,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26C51D2C9AFC84501570A8FD /* Pods_Produvar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Produvar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7607EC1A20CEB6B1008D351B /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		7607EC1C20CEB700008D351B /* MessageItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageItemCell.swift; sourceTree = "<group>"; };
 		7607EC1E20CFB9D0008D351B /* 768px-Kvadrato.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "768px-Kvadrato.svg.png"; path = "PNG (deprecated)/768px-Kvadrato.svg.png"; sourceTree = "<group>"; };
+		7629E86D20D6FA31008D2ED5 /* icons8-спящий-режим-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-спящий-режим-50.png"; path = "PNG (deprecated)/icons8-спящий-режим-50.png"; sourceTree = "<group>"; };
+		7629E86E20D6FA31008D2ED5 /* icons8-проверено-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-проверено-50.png"; path = "PNG (deprecated)/icons8-проверено-50.png"; sourceTree = "<group>"; };
+		7629E86F20D6FA31008D2ED5 /* icons8-рабочий-процесс-filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-рабочий-процесс-filled-50.png"; path = "PNG (deprecated)/icons8-рабочий-процесс-filled-50.png"; sourceTree = "<group>"; };
+		7629E87520D97770008D2ED5 /* Bugs */ = {isa = PBXFileReference; lastKnownFileType = text; path = Bugs; sourceTree = "<group>"; };
+		7629E87720D97FBA008D2ED5 /* UpdateStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusCell.swift; sourceTree = "<group>"; };
 		7645198720AADCAA004F2C7A /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		7645198920AAE46A004F2C7A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7645198B20AAE67A004F2C7A /* AllowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +123,10 @@
 		767C1CCD20C3EB040022C0A5 /* icons8-qr-код-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-qr-код-26.png"; path = "PNG (deprecated)/icons8-qr-код-26.png"; sourceTree = "<group>"; };
 		76844B8120BD829B0057F2F4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		76844B8320BD8E370057F2F4 /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		768C372D20D04AE800173A1A /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		768C372F20D2C74000173A1A /* QRAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRAuthViewController.swift; sourceTree = "<group>"; };
+		CE0052CE56C2228D0A844AAF /* Pods-Produvar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Produvar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Produvar/Pods-Produvar.debug.xcconfig"; sourceTree = "<group>"; };
+		D11D8A63B393224564DEEAF0 /* Pods-Produvar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Produvar.release.xcconfig"; path = "Pods/Target Support Files/Pods-Produvar/Pods-Produvar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5A53C9287CD510FF00F008 /* Pods_Produvar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,9 +155,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB6247ECE2EE5949F89BE8B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE0052CE56C2228D0A844AAF /* Pods-Produvar.debug.xcconfig */,
+				D11D8A63B393224564DEEAF0 /* Pods-Produvar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7645198D20AAEA80004F2C7A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7629E86E20D6FA31008D2ED5 /* icons8-проверено-50.png */,
+				7629E86F20D6FA31008D2ED5 /* icons8-рабочий-процесс-filled-50.png */,
+				7629E86D20D6FA31008D2ED5 /* icons8-спящий-режим-50.png */,
 				7607EC1E20CFB9D0008D351B /* 768px-Kvadrato.svg.png */,
 				767C1CC720C3EB040022C0A5 /* icons8-доска-планшет-26.png */,
 				767C1CC820C3EB040022C0A5 /* icons8-земной-шар-filled-50.png */,
@@ -161,6 +192,9 @@
 		764B3C912090B15A0099971B = {
 			isa = PBXGroup;
 			children = (
+				7629E87520D97770008D2ED5 /* Bugs */,
+				768C372F20D2C74000173A1A /* QRAuthViewController.swift */,
+				768C372D20D04AE800173A1A /* Podfile */,
 				767AD91B20CAF21900B934C3 /* Cells */,
 				767C1CC520C324600022C0A5 /* ScanInfo.swift */,
 				767C1CC320C2C8AA0022C0A5 /* OrderViewController.swift */,
@@ -169,6 +203,8 @@
 				764B3CB12090B15C0099971B /* ProduvarTests */,
 				764B3CBC2090B15C0099971B /* ProduvarUITests */,
 				764B3C9B2090B15C0099971B /* Products */,
+				4CB6247ECE2EE5949F89BE8B /* Pods */,
+				DCD842585673535DC2854293 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,8 +266,17 @@
 				767AD91E20CBA53A00B934C3 /* StatusItemCell.swift */,
 				7607EC1A20CEB6B1008D351B /* MessageCell.swift */,
 				7607EC1C20CEB700008D351B /* MessageItemCell.swift */,
+				7629E87720D97FBA008D2ED5 /* UpdateStatusCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		DCD842585673535DC2854293 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26C51D2C9AFC84501570A8FD /* Pods_Produvar.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +286,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 764B3CC22090B15C0099971B /* Build configuration list for PBXNativeTarget "Produvar" */;
 			buildPhases = (
+				8575B3CE96B5D46CCC17456F /* [CP] Check Pods Manifest.lock */,
 				764B3C962090B15A0099971B /* Sources */,
 				764B3C972090B15A0099971B /* Frameworks */,
 				764B3C982090B15A0099971B /* Resources */,
+				564858958AC6FB5C1AEC53D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -345,14 +392,19 @@
 				764B3CA82090B15C0099971B /* LaunchScreen.storyboard in Resources */,
 				767C1CC220C28A5F0022C0A5 /* icons8-камера-30.png in Resources */,
 				767C1CD420C3EB040022C0A5 /* icons8-qr-код-26.png in Resources */,
+				7629E87220D6FA31008D2ED5 /* icons8-рабочий-процесс-filled-50.png in Resources */,
 				7607EC1F20CFB9D0008D351B /* 768px-Kvadrato.svg.png in Resources */,
 				767C1CD120C3EB040022C0A5 /* icons8-новый-пост-filled-50.png in Resources */,
 				7645199420AAEA90004F2C7A /* produvar_logo.png in Resources */,
 				767C1CD020C3EB040022C0A5 /* icons8-календарь-50.png in Resources */,
+				7629E87020D6FA31008D2ED5 /* icons8-спящий-режим-50.png in Resources */,
 				7645199520AAEA90004F2C7A /* produvar_name_logo.png in Resources */,
 				7645199720AAEA90004F2C7A /* produvar_white.png in Resources */,
+				7629E87120D6FA31008D2ED5 /* icons8-проверено-50.png in Resources */,
+				768C372E20D04AE800173A1A /* Podfile in Resources */,
 				767C1CCE20C3EB040022C0A5 /* icons8-доска-планшет-26.png in Resources */,
 				767C1CD320C3EB040022C0A5 /* icons8-эл.-адрес-30.png in Resources */,
+				7629E87620D97770008D2ED5 /* Bugs in Resources */,
 				767C1CCF20C3EB040022C0A5 /* icons8-земной-шар-filled-50.png in Resources */,
 				767C1CC120C28A5F0022C0A5 /* icons8-задать-вопрос-30.png in Resources */,
 				7645199320AAEA90004F2C7A /* icons8-администратор-26.png in Resources */,
@@ -379,6 +431,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		564858958AC6FB5C1AEC53D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Produvar/Pods-Produvar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Produvar/Pods-Produvar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8575B3CE96B5D46CCC17456F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Produvar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		764B3C962090B15A0099971B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -389,12 +480,14 @@
 				767AD91F20CBA53A00B934C3 /* StatusItemCell.swift in Sources */,
 				76844B8420BD8E370057F2F4 /* Parameters.swift in Sources */,
 				7607EC1D20CEB700008D351B /* MessageItemCell.swift in Sources */,
+				768C373020D2C74000173A1A /* QRAuthViewController.swift in Sources */,
 				7645198820AADCAA004F2C7A /* AuthController.swift in Sources */,
 				767C1CC620C324600022C0A5 /* ScanInfo.swift in Sources */,
 				767AD91D20CAF2F600B934C3 /* StatusFlowCell.swift in Sources */,
 				76844B8220BD829B0057F2F4 /* User.swift in Sources */,
 				767AD91620C8639E00B934C3 /* OrderInfoCell.swift in Sources */,
 				764B3C9E2090B15C0099971B /* AppDelegate.swift in Sources */,
+				7629E87820D97FBA008D2ED5 /* UpdateStatusCell.swift in Sources */,
 				7645198C20AAE67A004F2C7A /* AllowViewController.swift in Sources */,
 				7645198A20AAE46A004F2C7A /* MainViewController.swift in Sources */,
 				767AD91A20CAA28100B934C3 /* ItemsTableViewCell.swift in Sources */,
@@ -549,29 +642,33 @@
 		};
 		764B3CC32090B15C0099971B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE0052CE56C2228D0A844AAF /* Pods-Produvar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UR5GQ524TD;
 				INFOPLIST_FILE = Produvar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HSE.Produvar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		764B3CC42090B15C0099971B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D11D8A63B393224564DEEAF0 /* Pods-Produvar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UR5GQ524TD;
 				INFOPLIST_FILE = Produvar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HSE.Produvar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class EmailAuthViewController: UIViewController {
 
@@ -23,6 +24,8 @@ class EmailAuthViewController: UIViewController {
         userNameTextField.autocorrectionType = .no
         passwordTextField.spellCheckingType = .no
 
+        let image = UIImage(named: "icons8-эл.-адрес-30.png")
+        tabBarItem.image = image
 
         // Do any additional setup after loading the view.
     }
@@ -34,129 +37,63 @@ class EmailAuthViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
             }
-    func auth(url:String)  {
-        let password = passwordTextField.text! as String
-        let username = userNameTextField.text! as String
-        userNameTextField.spellCheckingType = .no
-        passwordTextField.autocorrectionType = .no
-        userNameTextField.autocorrectionType = .no
-        passwordTextField.spellCheckingType = .no
-       
-        
-        // create the request
-        let url = URL(string: url)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-       // request.setValue("Basic \(base64LoginData)", forHTTPHeaderField: "Authorization")
-       // request.setValue(base64LoginData, forHTTPHeaderField: "Authorization")
-        request.setValue(username, forHTTPHeaderField: "username")
-        request.setValue(password, forHTTPHeaderField: "password")
-        print("ok")
-        //making the request
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse {
-                // check status code returned by the http server
-                print("status code = \(httpStatus.statusCode)")
-                var responseString = ""
-
-               responseString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String
-               print("responseString = \(responseString)")
-
-                // process result
-            }
-        }
-        task.resume()
-    }
+   
     func auth1(url:String)  {
         
-    
         let password = passwordTextField.text! as String
         let username = userNameTextField.text! as String
-        
-                // create the request
-        let url = URL(string: url)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        // request.setValue("Basic \(base64LoginData)", forHTTPHeaderField: "Authorization")
-        // request.setValue(base64LoginData, forHTTPHeaderField: "Authorization")
-        request.setValue(username, forHTTPHeaderField: "username")
-        request.setValue(password, forHTTPHeaderField: "password")
-        print("ok")
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            data, response, error in
-            
-            // Check for error
-            if error != nil
-            {
-                print("error=\(error)")
-                return
-            }
-            var responseString = ""
-            // Print out response string
-            responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
-            print("responseString = \(responseString)")
-            
-            
-            DispatchQueue.main.async {
+        if password.isEmpty || username.isEmpty {
+            let alert = UIAlertController(title: "Please, enter your login and password!", message:"Check your username, password and try again!", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(defaultAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        let parameters = [
+            "username" :username,
+            "password":password
+            ]
+        Alamofire.upload(
+            multipartFormData: { MultipartFormData in
+                //    multipartFormData.append(imageData, withName: "user", fileName: "user.jpg", mimeType: "image/jpeg")
                 
-                do {
-                    if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
-                        
-                        print("here")
-                        // print(convertedJsonIntoDict["status"] as! String)
-                        let httpStatus = response as? HTTPURLResponse
-                        
-                        if  httpStatus?.statusCode == 200 {
-                            let u = User(role: convertedJsonIntoDict["role"] as! String, name: convertedJsonIntoDict["name"] as! String, bearer: convertedJsonIntoDict["bearer"] as! String, username: convertedJsonIntoDict["username"] as! String)
-                           Parameters.user = u
-                            self.performSegue(withIdentifier: "userSegue", sender: self)
-                          
-                            //Parameters.auth = true;
-                      
-                            let alert = UIAlertController(title: "Hello, "+u.name, message: "", preferredStyle: .alert)
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alert.addAction(defaultAction)
-                            
-                            self.present(alert, animated: true, completion: nil)
-                            //self.performSegue(withIdentifier: "afterAuthSegue", sender: nil)
-                            // self.performSegue(withIdentifier: "tableViewSegue", sender: self)
-                            
-
-                            
-                        }
-                        else{
-                            let alert = UIAlertController(title: "Wrong code!", message:"Check your email and enter right number!", preferredStyle: .alert)
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alert.addAction(defaultAction)
-                            
-                            self.present(alert, animated: true, completion: nil)}
+                for (key, value) in parameters {
+                    MultipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                }
+        }, to: url) { (result) in
+            
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.responseJSON { response in
+                    let result = response.data
+                    
+                    
+                    do{
+                    Parameters.user = try JSONDecoder().decode(User.self, from: result!)
+                        print(Parameters.user.bearer + " " + Parameters.user.role + " " + Parameters.user.username)
+                        self.performSegue(withIdentifier: "userSegue", sender: self)
+                        let alert = UIAlertController(title: "Hello, " +  Parameters.user.name, message: "", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    catch{
+                        let alert = UIAlertController(title: "Wrong data!", message:"Check your username, password and try again!", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(defaultAction)
+                        self.present(alert, animated: true, completion: nil)}
                         
                     }
-                    
-                    
-                }
-                    
-                    
-                    
-                catch let error as NSError {
-                    print(error.localizedDescription)
-                    
-                }
                 
-                
-                
+               
+            case .failure(let encodingError):
+            print(encodingError)
             }
             
         }
         
-        
-        
-            task.resume()//} catch{}
+   
     }
     
 

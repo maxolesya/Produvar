@@ -11,60 +11,92 @@ import UIKit
 class OrderViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    var orders:[Order] = []
+    var order:Order = Order(label: "", code: "", dueDate: "", items: [], process: [], statusFlow: [])
     override func viewDidLoad() {
-        
-        postSearchByScan(b: NSMutableArray())
-
-       // tableView.delegate = self
+       
+       processorders(url:"https://prodapp.000webhostapp.com/orders") 
          self.tableView.delegate = self
-        // tableView.bounces = true
         tableView.isScrollEnabled = true
         tableView.dataSource = self;
-      //  super.viewDidLoad()
-  //      super.reloadInputViews()
-        // Do any additional setup after loading the view.
+       super.viewDidLoad()
+        
+        var newBackButton = UIBarButtonItem(title:"Back", style: .plain, target: self, action: #selector(self.goBack))
+        navigationItem.leftBarButtonItem = newBackButton
+       
+   
+        self.tableView.reloadData()
+    }
+    func goBack()
+    {
+        self.performSegue(withIdentifier: "fromOrderToMainSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return order.count().count+2
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell_ =  UITableViewCell()
         if true {
-            if indexPath.row==0 {
+            if indexPath.row == 0 {
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "manufacturerCell", for: indexPath) as! ManufacturerCell
                 
-                cell.phoneLabel.text = "+79256410156"
-                cell.mailLabel.text = "info@evolveproduction.nl"
-                cell.websiteLabel.text = "https://www.evolveproductions.nl"
-                cell.nameLabel.text = "Evolve Productions B.V"
+                cell.phoneLabel.text = Parameters.manufacturer.phonenumber
+                cell.mailLabel.text = Parameters.manufacturer.email
+                cell.websiteLabel.text = Parameters.manufacturer.website
+                cell.nameLabel.text = Parameters.manufacturer.name
                 cell.manufLabel.text = "Manufacturer"
                 cell_=cell
             }
-            if indexPath.row==1 {
+            if order.count()[indexPath.row] == "dueDate" {
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "orderInfoCell", for: indexPath) as! OrderInfoCell
                 
-                cell.nameLabel.text = "Worktop X34 for Johnson Family"
-                cell.dueDateLabel.text = "2018-07-29 12:12"
+                cell.nameLabel.text = order.label
+                cell.dueDateLabel.text = order.dueDate
                 cell_=cell
             }
-            if indexPath.row==2{
+            if order.count()[indexPath.row] == "items"{
               
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "itemsCell", for: indexPath) as! ItemsCell
-                cell.array.add("items2" )
-                cell.array.add("items3")
-                cell.array.add("items4" )
-                cell.array.add("items5" )
-                cell.array.add("items6" )
-                cell.array.add("items7")
-                cell.tableView.reloadData()
-              
-
+                for  item in order.items {
+                cell.array.add(item.label )
+                }
+                //cell.tableView.reloadData()
                 cell_=cell
             }
-
+            if order.count()[indexPath.row] == "statusFlow"{
+                
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "statusFlowCell", for: indexPath) as! StatusFlowCell
+                for  item in order.statusFlow {
+                    cell.status.add( item)
+                 
+                }
+            
+                cell_=cell
+            }
+            if order.count()[indexPath.row] == "process"{
+                
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "messagesCell", for: indexPath) as! MessageCell
+                for  item in order.process {
+                    cell.messages.add(item)
+                }
+                cell.tableView.reloadData()
+                
+               // cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.tableView.frame.height)
+                cell_=cell
+            }
+            if order.count()[indexPath.row] == "update"{
+                
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "updateStatusCell", for: indexPath) as! UpdateStatusCell
+                for  item in order.statusFlow {
+                    if item.iscurrent == "false" && item.isfinished == "false" {
+                        cell.status.add(item)
+                    }
+                }
+                cell.picker.reloadAllComponents()
+                cell_=cell
+            }
             
         }
         
@@ -77,95 +109,78 @@ class OrderViewController: UIViewController, UITableViewDataSource,UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func postSearchByScan(b:NSMutableArray) {
-        let username = "mark@facebook.com"
-        let password = "facebook"
-        let loginData = String(format: "%@:%@", username, password).data(using: String.Encoding.utf8)!
-        let base64LoginData = loginData.base64EncodedString()
-        print(loginData)
-        // create the request
-        let url = URL(string: "https://prodapp.000webhostapp.com/login")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Basic \(base64LoginData)", forHTTPHeaderField: "Authorization")
-        
-        //making the request
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("\(error)")
+   
+    
+    func processorders(url:String)  {
+        if Parameters.orderCode.isEmpty || Parameters.user.bearer.isEmpty  {return}
+        print("orders")
+        let getString = "?code=" + Parameters.orderCode + "&skip=0&limit=1"
+        var request = URLRequest(url: NSURL(string: url+getString)! as URL)
+        request.httpMethod = "GET"
+        var responseString = ""
+        request.setValue("Bearer " + Parameters.user.bearer, forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil
+            {
+                print("error=\(String(describing: error))")
                 return
             }
-            
-            if let httpStatus = response as? HTTPURLResponse {
-                // check status code returned by the http server
-                print("response = \(response)")
-                print("status code = \(httpStatus.statusCode)")
-                // process result
+            let httpStatus = response as? HTTPURLResponse
+            // Print out response string
+            responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as!String
+            print("responseString = \(responseString)")
+            if (httpStatus?.statusCode == 200){
+                print("success")
+                do{
+                    self.orders = try JSONDecoder().decode([Order].self, from: data!)
+                    self.order = self.orders[0]
+                    DispatchQueue.main.async {self.tableView.reloadData()}
+                    
+                }
+                catch{
+                    print(error)
+                    let alert = UIAlertController(title: "Something is wrong in orders!", message:"Check your username, password and try again!", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(defaultAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
-             self.tableView.reloadData()
+            else {
+                let alert = UIAlertController(title: "Wrong format!", message:"Make sure you are scanning an appropriate autorization tag", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)}
+            
         }
         task.resume()
-        
-        
-        
-         /*request = URLRequest(url: NSURL(string: "https://prodapp.000webhostapp.com/searchbyscan")! as URL)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        var body: [String:String]
-        body = ["code": "4fn34rqfrefk" as String,"url": "https://facebook.com" as String]
-        print(body)
-        do {
-            
-            let jsonBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
-            request.httpBody = jsonBody
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {
-                data, response, error in
-                
-                if error != nil { // обработка ошибки при отправке
-                    
-                    print("error=\(error)")
-                    
-                    return
-                    
-                }
-                
-                print("response = \(response)")
-                
-                let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! String
-                
-                print("responseString = \(responseString)")
-                
-                if((responseString.contains("Bad")) ) {
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Error!", message: "Something is wrong!", preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alert.addAction(defaultAction)
-                        
-                        self.present(alert, animated: true, completion: nil)
-                        return}
-                    
-                    
-                }
-                else {
-                    DispatchQueue.main.async {
-                        print(responseString)
-                        let alert = UIAlertController(title: "Thank you!", message: "You subscribed successfully", preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alert.addAction(defaultAction)
-                        
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    
-                }
-            }
-            task.resume()
-        }
-        catch{}*/
-        
-        
-        
     }
+  /*  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        var height:CGFloat
+        if order.count()[indexPath.row] == "items"{
+            
+            height =  CGFloat(order.items.count * 200)
+        }
+        if order.count()[indexPath.row] == "statusFlow"{
+            
+            height =  CGFloat(order.statusFlow.count * 20)
+        }
+        if order.count()[indexPath.row] == "process"{
+            
+            height =  CGFloat(order.process.count * 20)
+        }
+        else{height = 50}
+        return height
+        
+    }*/
+    /*override func viewWillAppear(_ animated: Bool) {
+        tableView.estimatedRowHeight = 700
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }*/
+  
     
 
 
